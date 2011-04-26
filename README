@@ -1,0 +1,107 @@
+====Prerequisites====
+
+1. This application requires that you have node.js installed in your computer. Read this website if you want to learn how to install node:
+
+http://howtonode.org/how-to-install-nodejs
+
+2. The Internet must be accessible. Proxy servers are not supported.
+
+====Running the Application====
+
+To run the application:
+1. open a command prompt
+2. change to the directory where you downloaded th async-app
+3. Type :
+node cmd.js
+
+
+====Example Output====
+ 
+raj@raj-VirtualBox:~/async-app$ node cmd.js 
+Enter search query to search for: 
+rayban glasses
+Query Entered: rayban+glasses
+===================Bing Search Results===================
+
+
+1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA 
+http://www.ray-ban.com/usa
+
+2. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator Glasses ...
+http://www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
+
+3. Ray Ban Sunglasses | Official Ray-Ban Site
+http://www.ray-ban.com/usa/sunglasses
+
+4. Ray Ban Glasses -- Ray Ban Eyeglasses
+http://www.eyeglasses.com/glasses/brand/ray-ban-glasses.html
+
+5. Ray-Ban RX Eyeglasses Eyewear 
+http://www.framesdirect.com/framesfc/Ray-Ban_RX-lamemc-pr-l.html
+
+6. Ray-Ban Glasses, Quality Ray-Ban Eyewear, Cheap Ray-Ban Eyeglasses ...
+http://www.brandglassesmall.com/designer-eyeglasses/rayban-glasses
+
+7. Ray Ban Sunglasses - Authorized Ray-Ban Sunglasses Dealer 
+http://www.framesdirect.com/framesfc/RayBan-lalhpi-slb-l.html
+
+8. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
+http://www.go-optic.com/glasses/ray-ban.asp
+
+===================Google Search Results===================
+
+
+1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA
+http://www.ray-ban.com/
+
+2. Ray-Ban Glasses - Collection Optical | Official Ray-Ban Web Site - USA
+http://www.ray-ban.com/usa/products/optical
+
+3. Ray Ban Sunglasses | Official Ray-Ban Site
+http://www.ray-ban.com/usa/sunglasses
+
+4. Ray-Ban RX Eyeglasses Eyewear
+http://www.framesdirect.com/framesfc/Ray-Ban_RX-lamemc-pr-l.html
+
+5. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator Glasses ...
+http://www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
+
+6. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
+http://www.go-optic.com/glasses/Ray-Ban.asp
+
+7. Ray-Ban - Wikipedia, the free encyclopedia
+http://en.wikipedia.org/wiki/Ray-Ban
+
+8. Ray-Ban Sunglasses, Aviators, Wayfarer - Zappos.com
+http://www.zappos.com/ray-ban
+
+===================Yahoo Search Results===================
+
+
+1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA
+www.ray-ban.com/
+
+2. Ray-Ban - Wikipedia, the free encyclopedia
+en.wikipedia.org/wiki/Ray-Ban
+
+3. Ray Ban Sunglasses | RayBan Eyewear | Rayban sunglasses ...
+www.ray-bans.us/
+
+4. Ray Ban Sunglasses, Cheap Rayban Sunglasses, Wholesale RB Sun ...
+www.raybansunglassesonsale.net/
+
+5. Ray Ban Sunglasses, Ray Ban Glasses, Discount RayBan Online
+www.raybans-glasses.com/
+
+6. Ray Ban Sunglasses - Discount Ray Ban Online Store Offering ...
+www.raybanonsale.uk.com/
+
+7. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
+www.go-optic.com/glasses/ray-ban.asp
+
+8. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator ...
+www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
+
+
+
+
