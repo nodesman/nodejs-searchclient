@@ -2,8 +2,9 @@ var sys = require("sys");
 var stdin = process.openStdin();
 var query;
 var XMLHttpRequest = require("./XMLHttpRequest").XMLHttpRequest;
-
-
+var YahooSearchAPIKey = "I.sBOQzV34HSifLdETL44KtQgMx8umhqYo.Pdzc_2ex4fSP7eMd5Ndc1rz_dn.c6sA--";
+var GoogleSearchAPIKey = "ABQIAAAAWIEtTgzDMl9txq3HBCPj0RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxR68530jlFSGTko3i0JyyH6WyqUjw";
+var BingSearchAPIKey = "F6105BE68C1C75A2273CC6E4EA7AAA9DD9AAB539";
 function trim(str) 
 {
   res =str.replace(/^\s+|\s+$/g,"");
@@ -42,16 +43,16 @@ function fetchSearchResults()
 			getYahooSearchResults(this.responseText);
 		}
 	};
-	var googleurl = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&q="+query+"&key=ABQIAAAAWIEtTgzDMl9txq3HBCPj0RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxR68530jlFSGTko3i0JyyH6WyqUjw";
+	var googleurl = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&q="+query+"&key="+GoogleSearchAPIKey;
  	google.open("GET",googleurl);
 	google.send();
 
-	var yahoourl = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=I.sBOQzV34HSifLdETL44KtQgMx8umhqYo.Pdzc_2ex4fSP7eMd5Ndc1rz_dn.c6sA--&query="+query+"&results="+numYahooSearchResults+"&output=json";
+	var yahoourl = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid="+YahooSearchAPIKey+"&query="+query+"&results="+numYahooSearchResults+"&output=json";
  	yahoo.open("GET",yahoourl);
 	yahoo.send();
 
 
-	var bingurl = "http://api.bing.net/json.aspx?AppId=F6105BE68C1C75A2273CC6E4EA7AAA9DD9AAB539&Version=2.2&Market=en-US&Query="+query+"&Sources=web+spell&Web.Count="+numBingResults;
+	var bingurl = "http://api.bing.net/json.aspx?AppId="+BingSearchAPIKey+"&Version=2.2&Market=en-US&Query="+query+"&Sources=web+spell&Web.Count="+numBingResults;
        bing.open("GET",bingurl);
        bing.send();
 
