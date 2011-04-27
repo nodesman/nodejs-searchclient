@@ -1,11 +1,10 @@
 var http = require('http');
 var wwwforms = require("./www-forms");
 var sys = require("sys");
-var bingSuccess=false;
-var googleSuccess=false;
-var yahooSuccess=false;
 
-var result;
+var bingDone;
+var googleDone;
+var yahooDone;
 
 var XMLHttpRequest = require("./XMLHttpRequest").XMLHttpRequest;
 
@@ -40,7 +39,7 @@ function fetchSearchResults(query)
 		if (this.readyState == 4) 
 		{
 			getYahooSearchResults(this.responseText);
-			bingSuccess=true;
+			yahooDone();
 		}
 	};
 	
@@ -49,7 +48,7 @@ function fetchSearchResults(query)
 		if (this.readyState == 4) 
 		{
 			getBingSearchResults(this.responseText);
-			yahooSuccess=true;
+			bingDone();
 		}
 	};
 
@@ -57,7 +56,7 @@ function fetchSearchResults(query)
 		if (this.readyState == 4) 
 		{
 			getGoogleSearchResults(this.responseText);
-			googleSuccess=true;
+			googleDone();
 		}
 	};
 	
@@ -270,10 +269,7 @@ function renderSearchResults(data,engineName)
 //start();
 
 
-function p(s)
-{
-     result.write(s+"<br>");
-}
+var p;
 
 
 
@@ -282,7 +278,14 @@ function p(s)
 
 
 http.createServer(function (req, res) {
-	result = res;
+	
+	
+	p = function (s) {
+	   res.write(s);
+	}
+	var bingSuccess=false;
+	var googleSuccess=false;
+	var yahooSuccess=false;
 	res.writeHead(200, {'Content-Type': 'text/html'});
 	var query="";
 	var ele = wwwforms.decodeForm(req.url);
@@ -294,24 +297,37 @@ http.createServer(function (req, res) {
 	    }
 	}
 	
+	bingDone = function () {
+
+	    bingSuccess=true;
+	}
+	
+	googleDone = function() {
+	    googleSuccess = true;
+
+	}
+	
+	yahooDone = function() {
+	    yahooSuccess = true;
+	}
+	
 	showForm(res);	
 	if (!fetchSearchResults(query))
 	{
 	  res.end();
 	}
 
-	setInterval( function() {
+	checker = setInterval( function() {
 	     if (bingSuccess && yahooSuccess && googleSuccess)
 	     {
-	        bingSuccess=false;
-	        googleSuccess=false;
-	        yahooSuccess=false;
+	        clearInterval(checker);
 	     	res.end();
 	     }
 	},2000); //if all three servers have responded, then end the request 
 	
 	
-	setTimeout( function () { 
+	setTimeout( function () {
+	p("Timedout"); 
 	     res.end();	
 	}, 5000);
 	
