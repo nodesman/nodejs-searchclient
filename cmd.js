@@ -1,10 +1,23 @@
+var http = require('http');
+var wwwforms = require("./www-forms");
 var sys = require("sys");
-var stdin = process.openStdin();
-var query;
+var bingSuccess=false;
+var googleSuccess=false;
+var yahooSuccess=false;
+
+var result;
+
 var XMLHttpRequest = require("./XMLHttpRequest").XMLHttpRequest;
+
 var YahooSearchAPIKey = "I.sBOQzV34HSifLdETL44KtQgMx8umhqYo.Pdzc_2ex4fSP7eMd5Ndc1rz_dn.c6sA--";
+var numYahooSearchResults = 8; //maximum is 100
+
 var GoogleSearchAPIKey = "ABQIAAAAWIEtTgzDMl9txq3HBCPj0RT2yXp_ZAY8_ufC3CFXhHIE1NvwkxR68530jlFSGTko3i0JyyH6WyqUjw";
+var numGoogleResults = 8 // maximum is 8.
+
 var BingSearchAPIKey = "F6105BE68C1C75A2273CC6E4EA7AAA9DD9AAB539";
+var numBingResults= 8; //maximum is 50
+
 function trim(str) 
 {
   res =str.replace(/^\s+|\s+$/g,"");
@@ -12,96 +25,119 @@ function trim(str)
 }
 
 
-function fetchSearchResults()
+function fetchSearchResults(query)
 {
-   
+        query = query.toString();
+	query = processQuery(query);
+	if (query.length == 0)
+		return 0;
 	var bing = new XMLHttpRequest();
-	var numBingResults= 8; //maximum is 50
-	var google = new XMLHttpRequest();
-        var numGoogleResults = 8 // maximum is 8.
+	var google = new XMLHttpRequest(); 
 	var yahoo = new XMLHttpRequest(); 
-        var numYahooSearchResults = 8; //maximum is 100
+	
+	
+	yahoo.onreadystatechange = function() {
+		if (this.readyState == 4) 
+		{
+			getYahooSearchResults(this.responseText);
+			bingSuccess=true;
+		}
+	};
+	
 
 	bing.onreadystatechange = function() {	
 		if (this.readyState == 4) 
 		{
 			getBingSearchResults(this.responseText);
+			yahooSuccess=true;
 		}
 	};
 
 	google.onreadystatechange = function() {
-
 		if (this.readyState == 4) 
 		{
 			getGoogleSearchResults(this.responseText);
+			googleSuccess=true;
 		}
 	};
+	
+	
+	try {
+		 var yahoourl = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid="+YahooSearchAPIKey+"&query="+query+"&results="+numYahooSearchResults+"&output=json";
+ 		yahoo.open("GET",yahoourl);
+		yahoo.send();
+	}
+	catch (exc)
+	{
+	     p("Problem fetching Yahoo results.");
+	}
+	
+	
+	try 
+	{
+		var googleurl = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&q="+query+"&key="+GoogleSearchAPIKey;
+ 		google.open("GET",googleurl);
+		google.send();
+	}
+	catch (exc)
+	{
+	     p("Problem fetching Google results.");
+	}
 
-	yahoo.onreadystatechange = function() {
-		if (this.readyState == 4) 
-		{
-			getYahooSearchResults(this.responseText);
-		}
-	};
-	var googleurl = "https://ajax.googleapis.com/ajax/services/search/web?v=1.0&rsz=8&q="+query+"&key="+GoogleSearchAPIKey;
- 	google.open("GET",googleurl);
-	google.send();
-
-	var yahoourl = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid="+YahooSearchAPIKey+"&query="+query+"&results="+numYahooSearchResults+"&output=json";
- 	yahoo.open("GET",yahoourl);
-	yahoo.send();
-
-
-	var bingurl = "http://api.bing.net/json.aspx?AppId="+BingSearchAPIKey+"&Version=2.2&Market=en-US&Query="+query+"&Sources=web+spell&Web.Count="+numBingResults;
-       bing.open("GET",bingurl);
-       bing.send();
-
+	try {
+		var bingurl = "http://api.bing.net/json.aspx?AppId="+BingSearchAPIKey+"&Version=2.2&Market=en-US&Query="+query+"&Sources=web+spell&Web.Count="+numBingResults;
+	       bing.open("GET",bingurl);
+	       bing.send();
+       	}
+	catch (exc)
+	{
+	     p("Problem fetching Yahoo results.");
+	}
+       return true;
+       
+      
 }
 
-
-sys.puts("Enter search query to search for: ");
-
-function start()
-{ 
-  stdin.on('data', function(chunk) { 
-    query = chunk.toString();
-    
+function processQuery (query)
+{
     query = trim(query);  // remove surrounding slashes and carriage returns
-    if (query.length == 0)
-    {
-       sys.puts("No query entered. Please enter to query and try again:");
-       return 0;
-    }
     query = escape(query);// url encode it.
     query = query.replace(/%20/g,"+"); //replace %20 with + 
-    sys.puts("Query Entered: "+query);
-    fetchSearchResults();
-  });
+    return query;
 }
 
-
-function checkWhetherValidBingResults(data)
+function checkWhetherValidBingResults(text)
 {
+ 
+    try {
+        data = JSON.parse(text);
+    }
+    catch (excp)
+    {
+       return false;
+    }
+    
     if (typeof data['SearchResponse'] === 'undefined')
 	return false;
    if (typeof data['SearchResponse']['Web'] === 'undefined')
 	return false;
    if (typeof data['SearchResponse']['Web']['Results'].length < 2)
 	return false;
-   return true;
+   return data;
 }
 
 
 function getBingSearchResults(text)
-{
-    var data = eval( "("+text+")");
-    if (!checkWhetherValidBingResults(data))
+{  
+    var data;
+    if (!(data = checkWhetherValidBingResults(text)))
     {
-         sys.puts("The bing search results response is mangled.");
+         p("The bing unreachable or returned non-JSON data.");
          return false;
     }
     else
     {
+
         var results = new Array();
         var item;
 	var index;
@@ -118,8 +154,17 @@ function getBingSearchResults(text)
 }
 
 
-function checkWehtherValidYahooResults(data)
+function checkWehtherValidYahooResults(text)
 {
+    var data;
+    try {
+        data=JSON.parse(text);
+    }
+    catch (excp)
+    {
+    	return false;
+    }
+    
    if (typeof data['ResultSet'] === 'undefined')
 	return false;
    
@@ -129,15 +174,15 @@ function checkWehtherValidYahooResults(data)
    if (data['ResultSet']['Result'].length < 2 )
    	return false;
 
-   return true;
+   return data;
 }
 
 function getYahooSearchResults(text)
 {
-    var data = eval( "("+text+")");
-    if (!checkWehtherValidYahooResults(data))
+    var data;
+    if (!(data = checkWehtherValidYahooResults(text)))
     {
-         sys.puts("The yahoo search results response is mangled.");
+         p("Yahoo's server is unreachable or has returned non-JSON data.");
          return false;
     }
     else
@@ -158,13 +203,21 @@ function getYahooSearchResults(text)
 }
 
 
-function checkWhetherValidGoogleResults(data)
+function checkWhetherValidGoogleResults(text)
 {
+ 
+    try {
+        data = JSON.parse(text);
+    }
+    catch (excp)
+    {
+       return false;
+    }
 
     if (typeof data['responseData'] == 'undefined')
 	return false;
 
-    return true;
+    return data;
 }
 
 /*
@@ -173,15 +226,15 @@ number of search results returned is 8 at max. Minimum is 4.
 */
 function getGoogleSearchResults(text)
 {
-    var data = eval( "("+text+")");
-    if (!checkWhetherValidGoogleResults(data))
+    var data;
+    if (!(data = checkWhetherValidGoogleResults(text)))
     {
-         sys.puts("Google search result appears to be mangled.");
+    	 p("Google's servers were unreachable or returned non-JSON information.");
+
          return false;
     }
     else
     {
- 
         var results = new Array();
         var item;
         var arrayItem;
@@ -200,54 +253,78 @@ function getGoogleSearchResults(text)
 
 function renderSearchResults(data,engineName)
 {
-    p("==================="+engineName+" Search Results===================\n\n");
+    p("<br>==================="+engineName+" Search Results===================<br>");
 
     for (var i in data)
     {
         index = parseInt(i)+1;
         p(index+". "+ data[i][0]);
-	p(data[i][1]+"\r\n");
+	p(data[i][1]+"<br>");
     }
 
 }
 
-start();
-
-
-
-
-
-/**** debugging functions **************/
-
-//the print_r() of javascript:
-
-function dump(arr,level) {
-	var dumped_text = "";
-	if(!level) level = 0;
-	
-	//The padding given at the beginning of the line.
-	var level_padding = "";
-	for(var j=0;j<level+1;j++) level_padding += "    ";
-	
-	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
-		for(var item in arr) {
-			var value = arr[item];
-			
-			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...\n";
-				dumped_text += dump(value,level+1);
-			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-			}
-		}
-	} else { //Stings/Chars/Numbers etc.
-		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-	}
-	return dumped_text;
-}
+//start();
 
 
 function p(s)
 {
-     sys.puts(s);
+     result.write(s+"<br>");
 }
+
+
+
+/**************************Server *********************/
+
+
+
+http.createServer(function (req, res) {
+	result = res;
+	res.writeHead(200, {'Content-Type': 'text/html'});
+	var query="";
+	var ele = wwwforms.decodeForm(req.url);
+	for (var i in ele)
+	{
+	    if (i == '/?q')
+	    {
+	    	query = ele[i];
+	    }
+	}
+	
+	showForm(res);	
+	if (!fetchSearchResults(query))
+	{
+	  res.end();
+	}
+
+	setInterval( function() {
+	     if (bingSuccess && yahooSuccess && googleSuccess)
+	     {
+	        bingSuccess=false;
+	        googleSuccess=false;
+	        yahooSuccess=false;
+	     	res.end();
+	     }
+	},2000); //if all three servers have responded, then end the request 
+	
+	
+	setTimeout( function () { 
+	     res.end();	
+	}, 5000);
+	
+	
+}).listen(8080);
+
+function showForm(res)
+{
+    res.write('<form action="/" method="get"> \
+    Search Query: <input type="text" name="q" /> \
+    <input type="submit" value="Go!"> \
+    </form>');
+}
+
+
+
+
+
+
