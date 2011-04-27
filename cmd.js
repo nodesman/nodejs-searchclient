@@ -281,7 +281,7 @@ http.createServer(function (req, res) {
 	
 	
 	p = function (s) {
-	   res.write(s);
+	   res.write(s+"<br>");
 	}
 	var bingSuccess=false;
 	var googleSuccess=false;
