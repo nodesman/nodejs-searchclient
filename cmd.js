@@ -327,7 +327,6 @@ http.createServer(function (req, res) {
 	
 	
 	setTimeout( function () {
-	p("Timedout"); 
 	     res.end();	
 	}, 5000);
 	
