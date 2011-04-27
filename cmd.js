@@ -119,10 +119,6 @@ function checkWhetherValidBingResults(text)
     
     if (typeof data['SearchResponse'] === 'undefined')
 	return false;
-   if (typeof data['SearchResponse']['Web'] === 'undefined')
-	return false;
-   if (typeof data['SearchResponse']['Web']['Results'].length < 2)
-	return false;
    return data;
 }
 
@@ -142,6 +138,7 @@ function getBingSearchResults(text)
         var item;
 	var index;
 	var arrayItem;
+	if (typeof data['SearchResponse']['Web'] != 'undefined')
         for (var i in data['SearchResponse']['Web']['Results'])
         {
              index = parseInt(i)+1;
@@ -170,9 +167,6 @@ function checkWehtherValidYahooResults(text)
    
    if (typeof data['ResultSet']['Result'] === 'undefined')
 	return false;
-
-   if (data['ResultSet']['Result'].length < 2 )
-   	return false;
 
    return data;
 }
@@ -253,7 +247,16 @@ function getGoogleSearchResults(text)
 
 function renderSearchResults(data,engineName)
 {
+
+
+    if (data.length == 0 )
+    {
+        p(engineName+" returned 0 results.");
+        return 0;
+    }
+    
     p("<br>==================="+engineName+" Search Results===================<br>");
+    
 
     for (var i in data)
     {
@@ -323,8 +326,4 @@ function showForm(res)
     </form>');
 }
 
-
-
-
-
-
+console.log("Server started at http://localhost:8080/");

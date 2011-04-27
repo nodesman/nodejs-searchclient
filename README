@@ -10,98 +10,97 @@ http://howtonode.org/how-to-install-nodejs
 
 To run the application:
 1. open a command prompt
-2. change to the directory where you downloaded th async-app
+2. change to the directory where you downloaded and extracted the application
 3. Type :
 node cmd.js
+4. Open a web browser and then visit:
+http://localhost:8080/
+5. Fill out the search query form and then click Go!
+
+The search results should be displayed as shown in the example output section below.
 
 
 ====Example Output====
- 
-raj@raj-VirtualBox:~/async-app$ node cmd.js 
-Enter search query to search for: 
-rayban glasses
-Query Entered: rayban+glasses
-===================Bing Search Results===================
-
-
-1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA 
-http://www.ray-ban.com/usa
-
-2. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator Glasses ...
-http://www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
-
-3. Ray Ban Sunglasses | Official Ray-Ban Site
-http://www.ray-ban.com/usa/sunglasses
-
-4. Ray Ban Glasses -- Ray Ban Eyeglasses
-http://www.eyeglasses.com/glasses/brand/ray-ban-glasses.html
-
-5. Ray-Ban RX Eyeglasses Eyewear 
-http://www.framesdirect.com/framesfc/Ray-Ban_RX-lamemc-pr-l.html
-
-6. Ray-Ban Glasses, Quality Ray-Ban Eyewear, Cheap Ray-Ban Eyeglasses ...
-http://www.brandglassesmall.com/designer-eyeglasses/rayban-glasses
-
-7. Ray Ban Sunglasses - Authorized Ray-Ban Sunglasses Dealer 
-http://www.framesdirect.com/framesfc/RayBan-lalhpi-slb-l.html
-
-8. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
-http://www.go-optic.com/glasses/ray-ban.asp
 
 ===================Google Search Results===================
 
+1. Pulp Fiction (1994) - Memorable quotes
+http://www.imdb.com/title/tt0110912/quotes
 
-1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA
-http://www.ray-ban.com/
+2. Pulp Fiction 3
+http://www.whysanity.net/monos/jules.html
 
-2. Ray-Ban Glasses - Collection Optical | Official Ray-Ban Web Site - USA
-http://www.ray-ban.com/usa/products/optical
+3. YouTube - The Path of the RIghteous Man
+http://www.youtube.com/watch?v=wz80uV4t-W0
 
-3. Ray Ban Sunglasses | Official Ray-Ban Site
-http://www.ray-ban.com/usa/sunglasses
+4. YouTube - The Path Of A Righteous Man...
+http://www.youtube.com/watch?v=D4x9Zqx62VI
 
-4. Ray-Ban RX Eyeglasses Eyewear
-http://www.framesdirect.com/framesfc/Ray-Ban_RX-lamemc-pr-l.html
+5. The path of the righteous man is beset by the inequities of the ...
+http://www.democraticunderground.com/discuss/duboard.php?az=view_all&address=132x5553855
 
-5. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator Glasses ...
-http://www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
+6. Pulp Fiction - Wikiquote
+http://en.wikiquote.org/wiki/Pulp_Fiction
 
-6. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
-http://www.go-optic.com/glasses/Ray-Ban.asp
+7. "The path of the righteous man is beset on all sides by the ...
+http://forum.thefreedictionary.com/postst12054_-The-path-of-the-righteous-man-is-beset-on-all-sides-by-the-inequities-of-the-selfish--.aspx
 
-7. Ray-Ban - Wikipedia, the free encyclopedia
-http://en.wikipedia.org/wiki/Ray-Ban
+8. Ezechiele 25.17: The path of the righteous man | Facebook
+http://www.facebook.com/pages/Ezechiele-2517-The-path-of-the-righteous-man/275958688267
 
-8. Ray-Ban Sunglasses, Aviators, Wayfarer - Zappos.com
-http://www.zappos.com/ray-ban
+
+===================Bing Search Results===================
+
+1. Ezekiel 25:17. "The Path of the Righteous Man Is Beset on All ...
+http://bestuff.com/stuff/ezekiel-2517-the-path-of-the-righteous-man-is-beset-on-all-sides-by-theinequities-of-the-selfish-and-the-tyranny-of-evil-men
+
+2. The path of the righteous man | Facebook
+http://www.facebook.com/pages/The-path-of-the-righteous-man/213593386123
+
+3. YouTube - "The Righteous Path" by Drive-By Truckers
+http://www.youtube.com/watch?v=-CyNabyA4lA
+
+4. YouTube - Path of the Righteous Man
+http://www.youtube.com/watch?v=WSU5JmcH3jE
+
+5. The Path of a Righteous Manâ€¦ Â« Jon Sanders' Blog
+http://jjsanders.wordpress.com/2010/01/30/the-path-of-a-righteous-man/
+
+6. The path of the righteous man is beset on all sides | Flickr ...
+http://www.flickr.com/photos/phill_dvsn/2320746355/in/set-72157604077257226/
+
+7. The Path of The Righteous Man | The Minority Report
+http://www.theminorityreportblog.com/2010/10/27/the-path-of-the-righteous-man/
+
+8. WWK: THE PATH OF THE RIGHTEOUS MAN
+http://wiiwerekids.blogspot.com/2011/04/path-of-righteous-man.html
+
 
 ===================Yahoo Search Results===================
 
+1. Isaiah 26:7 The path of the righteous is level; O upright One ...
+bible.cc/isaiah/26-7.htm
 
-1. Ray-Ban Sunglasses | Ray-Ban Official Web Site - USA
-www.ray-ban.com/
+2. Hi D
+www.headcoverings-by-devorah.com/PathOfRighteousGentile.htm
 
-2. Ray-Ban - Wikipedia, the free encyclopedia
-en.wikipedia.org/wiki/Ray-Ban
+3. The Path of the Righteous Man " Beach Creeps Â· Funny pictures ...
+www.beachcreeps.com/the-path-of-the-righteous-man/
 
-3. Ray Ban Sunglasses | RayBan Eyewear | Rayban sunglasses ...
-www.ray-bans.us/
+4. Proverbs 4:18 The path of the righteous is like the first ...
+bible.cc/proverbs/4-18.htm
 
-4. Ray Ban Sunglasses, Cheap Rayban Sunglasses, Wholesale RB Sun ...
-www.raybansunglassesonsale.net/
+5. Necromancer Administration
+www.necromancer.org/newnecs/admin.html
 
-5. Ray Ban Sunglasses, Ray Ban Glasses, Discount RayBan Online
-www.raybans-glasses.com/
+6. Gayatri Mantra : The purest and most potent of all Mantras
+www.meditationiseasy.com/mCorner/techniques/gayatri_mantra.htm
 
-6. Ray Ban Sunglasses - Discount Ray Ban Online Store Offering ...
-www.raybanonsale.uk.com/
+7. ezekiel pulp fiction
+www.webspawner.com/users/ezekielpulp/
 
-7. Ray-Ban Glasses - Ray-Ban Eyeglasses - Ray-Ban Sunglasses
-www.go-optic.com/glasses/ray-ban.asp
-
-8. Ray-Ban Sunglasses | Discount Ray Ban Polarized, Aviator ...
-www.bestbuyeyeglasses.com/ray-ban-sunglasses.html
-
+8. User:CommandantFruitcake - Uncyclopedia, the content-free ...
+uncyclopedia.wikia.com/wiki/User:CommandantFruitcake
 
 
 
