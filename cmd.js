@@ -276,7 +276,7 @@ var p;
 /**************************Server *********************/
 
 
-
+try {
 http.createServer(function (req, res) {
 	
 	
@@ -321,6 +321,7 @@ http.createServer(function (req, res) {
 	     if (bingSuccess && yahooSuccess && googleSuccess)
 	     {
 	        clearInterval(checker);
+	       
 	     	res.end();
 	     }
 	},2000); //if all three servers have responded, then end the request 
@@ -332,6 +333,12 @@ http.createServer(function (req, res) {
 	
 	
 }).listen(8080);
+
+}
+catch (exc)
+{
+    console.log("Unable to start server: "+exc);
+}
 
 function showForm(res)
 {
